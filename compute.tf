@@ -1,10 +1,4 @@
 terraform {
-    # backend "remote" {
-    #     organization = "TheFranchise"
-    #     workspaces = {
-    #         name = "TheFranchiseWorkspace"
-    #     }
-    # }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -17,13 +11,15 @@ terraform {
 
 provider "aws" {
   profile = "iac-user-master"
-  region  = "us-east-1"
+  region  = var.aws_region
+}
+
+resource "aws_vpc" "main" {
+  cidr_block = var.vpc_cidr_block
 }
 
 resource "aws_instance" "public-ec2" {
   ami           = "ami-0aeeebd8d2ab47354"
   instance_type = "t2.micro"
-  tags = {
-    Owner = "iac-user"
-  }
+  tags = var.tags
 }
