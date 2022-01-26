@@ -14,7 +14,7 @@ variable "tags" {
   description = "Tags for infrastructure"
   type        = map(string)
   default = {
-    name     = "CreatedWithTerraform"
+    project     = "CreatedWithTerraform"
     environment = "dev"
   }
 
