@@ -10,15 +10,15 @@ terraform {
 }
 
 provider "aws" {
-  profile = "iac-user-master"
+  profile = "ts-master"
   region  = var.aws_region
 }
 
-resource "aws_vpc" "main" {
+resource "aws_vpc" "MainVPC" {
   cidr_block = var.vpc_cidr_block
 }
 
-resource "aws_instance" "public-ec2" {
+resource "aws_instance" "MyEC2" {
   ami           = "ami-0aeeebd8d2ab47354"
   instance_type = "t2.micro"
   tags          = var.tags
